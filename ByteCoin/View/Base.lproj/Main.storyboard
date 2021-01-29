@@ -18,12 +18,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ct2-jk-pgH">
-                                <rect key="frame" x="0.0" y="646" width="414" height="216"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="216" id="S7z-Rh-fJa"/>
-                                </constraints>
-                            </pickerView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="WWW-oe-lHd">
                                 <rect key="frame" x="0.0" y="54" width="414" height="165"/>
                                 <subviews>
@@ -74,7 +68,7 @@
                                             <constraint firstAttribute="bottom" secondItem="Ocx-jo-FtC" secondAttribute="bottom" id="4g7-Ag-CSv"/>
                                             <constraint firstAttribute="trailing" secondItem="Ocx-jo-FtC" secondAttribute="trailing" constant="10" id="Qu0-hp-NgW"/>
                                             <constraint firstItem="Ocx-jo-FtC" firstAttribute="leading" secondItem="y91-qX-d96" secondAttribute="leading" id="YrU-Yp-Yu8"/>
-                                            <constraint firstItem="Ocx-jo-FtC" firstAttribute="top" secondItem="y91-qX-d96" secondAttribute="top" id="joV-wc-L2Q"/>
+                                            <constraint firstAttribute="top" secondItem="Ocx-jo-FtC" secondAttribute="top" id="joV-wc-L2Q"/>
                                             <constraint firstAttribute="height" constant="80" id="pPp-uS-nxw"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
@@ -84,28 +78,71 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="top" secondItem="y91-qX-d96" secondAttribute="top" constant="-85" id="0Zg-Ve-INm"/>
+                                    <constraint firstAttribute="bottom" secondItem="y91-qX-d96" secondAttribute="bottom" id="JP7-fE-jkp"/>
+                                    <constraint firstAttribute="trailing" secondItem="LAM-79-vXn" secondAttribute="trailing" constant="92" id="Llz-Tl-iI6"/>
+                                    <constraint firstItem="y91-qX-d96" firstAttribute="top" secondItem="LAM-79-vXn" secondAttribute="bottom" constant="25" id="OLq-zc-Xg2"/>
+                                    <constraint firstItem="y91-qX-d96" firstAttribute="top" secondItem="LAM-79-vXn" secondAttribute="bottom" constant="25" id="eN9-Ct-fsd"/>
+                                    <constraint firstItem="LAM-79-vXn" firstAttribute="leading" secondItem="WWW-oe-lHd" secondAttribute="leading" constant="92" id="rPO-uI-abu"/>
+                                </constraints>
                             </stackView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="m5k-GL-ALq">
-                                <rect key="frame" x="133" y="380" width="148" height="137"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ct2-jk-pgH">
+                                <rect key="frame" x="0.0" y="437" width="414" height="162"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="162" id="S7z-Rh-fJa"/>
+                                </constraints>
+                            </pickerView>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c6m-HF-1LO">
+                                <rect key="frame" x="6" y="255" width="400" height="162"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="162" id="6Ui-KR-EZK"/>
+                                </constraints>
+                            </pickerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V5j-lz-wTr">
+                                <rect key="frame" x="136.5" y="794" width="141" height="58"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="58" id="mob-2W-J0c"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="38"/>
+                                <state key="normal" title="Get Rate">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="getRatePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pOR-Ge-uEY"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="m5k-GL-ALq">
+                                <rect key="frame" x="168" y="227" width="79" height="56"/>
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="CjI-yV-vnC"/>
                         <color key="backgroundColor" name="Background Color"/>
                         <constraints>
                             <constraint firstItem="ct2-jk-pgH" firstAttribute="trailing" secondItem="CjI-yV-vnC" secondAttribute="trailing" id="0NU-ng-zoE"/>
+                            <constraint firstItem="m5k-GL-ALq" firstAttribute="leading" secondItem="CjI-yV-vnC" secondAttribute="leading" constant="168" id="2kI-4g-zpo"/>
+                            <constraint firstItem="ct2-jk-pgH" firstAttribute="top" secondItem="c6m-HF-1LO" secondAttribute="bottom" constant="20" id="5yo-Zr-W2z"/>
                             <constraint firstItem="WWW-oe-lHd" firstAttribute="top" secondItem="CjI-yV-vnC" secondAttribute="top" constant="10" id="6gh-lx-Pg8"/>
+                            <constraint firstItem="c6m-HF-1LO" firstAttribute="top" secondItem="m5k-GL-ALq" secondAttribute="bottom" constant="10" id="8bf-pc-2b2"/>
                             <constraint firstItem="WWW-oe-lHd" firstAttribute="leading" secondItem="CjI-yV-vnC" secondAttribute="leading" id="DHX-HO-65x"/>
+                            <constraint firstItem="c6m-HF-1LO" firstAttribute="top" secondItem="m5k-GL-ALq" secondAttribute="bottom" constant="8" symbolic="YES" id="DSJ-Ki-BvV"/>
                             <constraint firstItem="CjI-yV-vnC" firstAttribute="trailing" secondItem="WWW-oe-lHd" secondAttribute="trailing" id="OZU-yE-hqJ"/>
+                            <constraint firstItem="CjI-yV-vnC" firstAttribute="trailing" secondItem="m5k-GL-ALq" secondAttribute="trailing" constant="167" id="R3j-wr-Zgk"/>
+                            <constraint firstItem="CjI-yV-vnC" firstAttribute="trailing" secondItem="c6m-HF-1LO" secondAttribute="trailing" constant="8" id="VF8-n6-JFq"/>
+                            <constraint firstItem="V5j-lz-wTr" firstAttribute="centerX" secondItem="5TP-yw-RBT" secondAttribute="centerX" id="ZRb-Oc-RvK"/>
+                            <constraint firstItem="m5k-GL-ALq" firstAttribute="top" secondItem="WWW-oe-lHd" secondAttribute="bottom" constant="8" symbolic="YES" id="e5h-57-yUe"/>
+                            <constraint firstItem="CjI-yV-vnC" firstAttribute="bottom" secondItem="V5j-lz-wTr" secondAttribute="bottom" constant="10" id="gvo-yX-FOd"/>
+                            <constraint firstItem="c6m-HF-1LO" firstAttribute="leading" secondItem="CjI-yV-vnC" secondAttribute="leading" constant="6" id="hHm-dg-rbG"/>
                             <constraint firstItem="ct2-jk-pgH" firstAttribute="leading" secondItem="CjI-yV-vnC" secondAttribute="leading" id="myB-1G-FSo"/>
-                            <constraint firstItem="ct2-jk-pgH" firstAttribute="bottom" secondItem="CjI-yV-vnC" secondAttribute="bottom" id="tCZ-GN-qxe"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="m5k-GL-ALq" id="wW2-xw-9zX"/>
+                        <outlet property="fromCurrency" destination="c6m-HF-1LO" id="pn2-wk-OQl"/>
                         <outlet property="lblBitCoin" destination="N2a-Ax-iRV" id="z7i-gN-fpj"/>
                         <outlet property="lblCurrency" destination="MAn-y0-nXv" id="vRu-C4-uQ7"/>
-                        <outlet property="pckCurrency" destination="ct2-jk-pgH" id="hA7-sX-gfz"/>
+                        <outlet property="toCurrency" destination="ct2-jk-pgH" id="hA7-sX-gfz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

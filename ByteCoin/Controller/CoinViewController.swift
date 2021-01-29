@@ -11,16 +11,25 @@ import UIKit
 class CoinViewController: UIViewController {
   @IBOutlet weak var lblBitCoin: UILabel!
   @IBOutlet weak var lblCurrency: UILabel!
-  @IBOutlet weak var pckCurrency: UIPickerView!
+  @IBOutlet weak var toCurrency: UIPickerView!
   @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
   
+  @IBOutlet weak var fromCurrency: UIPickerView!
   var coinManager = CoinManager()
+  var currencySelected: String? = nil
+  var cryptoSelected: String? = nil
+  
   override func viewDidLoad() {
-    super.viewDidLoad()
-    // Do any additional setup after loading the view.
-    pckCurrency.dataSource = self
-    pckCurrency.delegate = self
+    super.viewDidLoad()    
     coinManager.delegate = self
+    // Do any additional setup after loading the view.
+    toCurrency.dataSource = self
+    toCurrency.delegate = self
+    toCurrency.tag = 2
+    
+    fromCurrency.delegate = self
+    fromCurrency.dataSource = self
+    fromCurrency.tag = 1
     
     activityIndicator.hidesWhenStopped = true
     activityIndicator.startAnimating()
@@ -28,14 +37,20 @@ class CoinViewController: UIViewController {
     self.activityIndicator.stopAnimating()
     
     // select first picker value
-    let selected = self.coinManager.currencyArray[0]
-    self.coinManager.getCoinPrice(for: selected)
-    self.lblCurrency.text = selected
-    
-    
-    
+    //    let selected = self.coinManager.currencyArray[0]
+    //    self.coinManager.getCoinPrice(for: selected)
+    //    self.lblCurrency.text = selected
   }
   
+  @IBAction func getRatePressed(_ sender: UIButton) {
+    let crypto = cryptoSelected ?? coinManager.cryptoCurrency[fromCurrency.selectedRow(inComponent: 0)]
+    let currency = currencySelected ?? coinManager.cryptoCurrency[toCurrency.selectedRow(inComponent: 1)]
+   
+    coinManager.getCoinPrice(from: crypto, to: currency)
+    lblCurrency.text = currencySelected
+    activityIndicator.startAnimating()
+    
+  }
 }
 
 // MARK: - CoinManagerDelegate
@@ -49,8 +64,10 @@ extension CoinViewController: CoinManagerDelegate {
   }
   
   func didFailWithError(error: Error) {
-    self.activityIndicator.stopAnimating()
-    print(error.localizedDescription)
+    DispatchQueue.main.async {
+      self.activityIndicator.stopAnimating()
+      print(error.localizedDescription)
+    }
   }
 }
 
@@ -62,21 +79,40 @@ extension CoinViewController: UIPickerViewDataSource {
   }
   
   func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-    return coinManager.currencyArray.count
+//    switch pickerView.tag {
+//    case 1:
+      return coinManager.cryptoCurrency.count
+//    case 2:
+//      return coinManager.currencyArray.count
+//    default:
+//      return 1
+//    }
   }
+  
   func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-    return coinManager.currencyArray[row]
+//    switch pickerView.tag {
+//    case 1:
+      return coinManager.cryptoDescriptions[row]
+//    case 2:
+//      return coinManager.currencyArray[row]
+//    default:
+//      return "ERROR"
+//    }
+//
   }
 }
 
 // MARK: - UIPickerViewDelegate
 extension CoinViewController: UIPickerViewDelegate {
-  
-  
   func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-    let selected = coinManager.currencyArray[row]
-    coinManager.getCoinPrice(for: selected)
-    lblCurrency.text = selected
-    activityIndicator.startAnimating()
+    switch pickerView.tag {
+    case 1:
+      cryptoSelected = coinManager.cryptoCurrency[row]
+    case 2:
+      currencySelected = coinManager.cryptoCurrency[row]
+    default:
+      print("ERROR")
+    }
   }
 }
+
